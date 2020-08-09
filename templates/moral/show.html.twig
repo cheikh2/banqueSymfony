@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container mt-4">
+		<h5>LISTE DE CLIENTS MORAUX</h5>
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+		<div class="text-right">
+			<a href="{{ path('moral_new') }}" class="btn btn-success">AJOUTER UN Client</a>
+		</div>
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>NOM</th>
+					<th>NINEA</th>
+					<th>REGISTRE</th>
+					<th>RAISON SOCIALE</th>
+					<th>ADRESSE</th>
+					<th>ACTION 1</th>
+					<th>ACTION 1</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for moral in morals %}
+					<tr>
+						<td>{{ moral.id }}</td>
+						<td>{{ moral.nomEmpl }}</td>
+						<td>{{ moral.ninea }}</td>
+						<td>{{ moral.rc }}</td>
+						<td>{{ moral.raisonSocial }}</td>
+						<td>{{ moral.adressEmpl }}</td>
+						<td>
+							<a href="{{ path('moral_edit', {id: moral.id}) }}" class="btn btn-primary">Editer</a>
+						</td>
+						<td>
+							<a href="{{ path('moral_delete', {id: moral.id}) }}" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer')">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

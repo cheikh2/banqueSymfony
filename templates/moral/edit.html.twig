@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer client moral{% endblock %}
+{% block body %}
+<h1>Editer un client</h1>
+
+{{ form_start(form) }}
+    {% include "moral/index.html.twig" %}
+    <button class="btn btn-success">
+        Editer
+    <button>
+{{ form_end(form) }}
+
+{% endblock %}

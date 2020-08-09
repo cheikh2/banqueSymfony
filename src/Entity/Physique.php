@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PhysiqueRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,21 @@ class Physique
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $salaire;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Moral::class, inversedBy="physiques")
+     */
+    private $moral;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Compte::class, mappedBy="physique")
+     */
+    private $comptes;
+
+    public function __construct()
+    {
+        $this->comptes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +188,49 @@ class Physique
     public function setSalaire(?string $salaire): self
     {
         $this->salaire = $salaire;
+
+        return $this;
+    }
+
+    public function getMoral(): ?Moral
+    {
+        return $this->moral;
+    }
+
+    public function setMoral(?Moral $moral): self
+    {
+        $this->moral = $moral;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Compte[]
+     */
+    public function getComptes(): Collection
+    {
+        return $this->comptes;
+    }
+
+    public function addCompte(Compte $compte): self
+    {
+        if (!$this->comptes->contains($compte)) {
+            $this->comptes[] = $compte;
+            $compte->setPhysique($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompte(Compte $compte): self
+    {
+        if ($this->comptes->contains($compte)) {
+            $this->comptes->removeElement($compte);
+            // set the owning side to null (unless already changed)
+            if ($compte->getPhysique() === $this) {
+                $compte->setPhysique(null);
+            }
+        }
 
         return $this;
     }

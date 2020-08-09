@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MoralRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,22 @@ class Moral
      * @ORM\Column(type="string", length=255)
      */
     private $adressEmpl;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Physique::class, mappedBy="moral")
+     */
+    private $physiques;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Compte::class, mappedBy="moral")
+     */
+    private $comptes;
+
+    public function __construct()
+    {
+        $this->physiques = new ArrayCollection();
+        $this->comptes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +121,68 @@ class Moral
     public function setAdressEmpl(string $adressEmpl): self
     {
         $this->adressEmpl = $adressEmpl;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Physique[]
+     */
+    public function getPhysiques(): Collection
+    {
+        return $this->physiques;
+    }
+
+    public function addPhysique(Physique $physique): self
+    {
+        if (!$this->physiques->contains($physique)) {
+            $this->physiques[] = $physique;
+            $physique->setMoral($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhysique(Physique $physique): self
+    {
+        if ($this->physiques->contains($physique)) {
+            $this->physiques->removeElement($physique);
+            // set the owning side to null (unless already changed)
+            if ($physique->getMoral() === $this) {
+                $physique->setMoral(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Compte[]
+     */
+    public function getComptes(): Collection
+    {
+        return $this->comptes;
+    }
+
+    public function addCompte(Compte $compte): self
+    {
+        if (!$this->comptes->contains($compte)) {
+            $this->comptes[] = $compte;
+            $compte->setMoral($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompte(Compte $compte): self
+    {
+        if ($this->comptes->contains($compte)) {
+            $this->comptes->removeElement($compte);
+            // set the owning side to null (unless already changed)
+            if ($compte->getMoral() === $this) {
+                $compte->setMoral(null);
+            }
+        }
 
         return $this;
     }

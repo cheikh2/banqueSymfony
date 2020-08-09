@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter client moral{% endblock %}
+
+{% block body %}
+
+<h1>Ajouter un client</h1>
+
+{{ form_start(form) }}
+    {% include "moral/index.html.twig" %}
+    <button class="btn btn-success">
+        Ajouter
+    <button>
+{{ form_end(form) }}
+
+{% endblock %}
