@@ -25,14 +25,9 @@ class TypeCompte
     private $libelle;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Compte::class, mappedBy="typecomptes")
+     * @ORM\ManyToOne(targetEntity=Compte::class, inversedBy="typecomptes")
      */
-    private $comptes;
-
-    public function __construct()
-    {
-        $this->comptes = new ArrayCollection();
-    }
+    private $compte;
 
     public function getId(): ?int
     {
@@ -51,30 +46,14 @@ class TypeCompte
         return $this;
     }
 
-    /**
-     * @return Collection|Compte[]
-     */
-    public function getComptes(): Collection
+    public function getCompte(): ?Compte
     {
-        return $this->comptes;
+        return $this->compte;
     }
 
-    public function addCompte(Compte $compte): self
+    public function setCompte(?Compte $compte): self
     {
-        if (!$this->comptes->contains($compte)) {
-            $this->comptes[] = $compte;
-            $compte->addTypecompte($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCompte(Compte $compte): self
-    {
-        if ($this->comptes->contains($compte)) {
-            $this->comptes->removeElement($compte);
-            $compte->removeTypecompte($this);
-        }
+        $this->compte = $compte;
 
         return $this;
     }

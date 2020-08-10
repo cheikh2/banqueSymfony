@@ -50,7 +50,7 @@ class MoralController extends AbstractController
     /**
      * @Route("/moral/{id}/edit", name="moral_edit")
      */
-    public function edit(Moral $moral, Request $request):Response
+    public function edit(Moral $moral, Request $request): Response
     {
         $form = $this->createForm(MoralType::class, $moral);
         $form->handleRequest($request);
@@ -69,12 +69,12 @@ class MoralController extends AbstractController
     /**
      * @Route("/moral/{id}/delete", name="moral_delete")
      */
-    public function delete(Moral $moral):RedirectResponse
+    public function delete(Moral $moral): RedirectResponse
     {
         $entityManager = $this->getDoctrine()->getManager();
-           $entityManager->remove($moral);
-           $entityManager->flush();
+        $entityManager->remove($moral);
+        $entityManager->flush();
 
-           return $this->redirectToRoute('moral_show');
+        return $this->redirectToRoute('moral_show');
     }
 }

@@ -1,15 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter client Physique{% endblock %}
-
+{% block title %}Editer compte{% endblock %}
 {% block body %}
-
-<h1>Ajouter un client physique</h1>
+<h1>Editer un compte</h1>
 
 {{ form_start(form) }}
-    {% include "physique/index.html.twig" %}
+    {% include "compte/index.html.twig" %}
     <button class="btn btn-success">
-        Ajouter
+        Editer
     <button>
 {{ form_end(form) }}
 

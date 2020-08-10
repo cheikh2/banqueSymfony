@@ -86,8 +86,7 @@ class PhysiqueType extends AbstractType
                     'class' => Moral::class,
                     'choice_label' => 'nomEmpl'
                 ]
-            )
-            ->add('save', SubmitType::class, ['label' => 'Ajouter']);
+                );
     }
 
     public function configureOptions(OptionsResolver $resolver)

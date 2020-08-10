@@ -60,7 +60,7 @@ class Compte
     private $physique;
 
     /**
-     * @ORM\ManyToMany(targetEntity=TypeCompte::class, inversedBy="comptes")
+     * @ORM\OneToMany(targetEntity=TypeCompte::class, mappedBy="compte")
      */
     private $typecomptes;
 
@@ -68,6 +68,7 @@ class Compte
     {
         $this->typecomptes = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -182,6 +183,7 @@ class Compte
     {
         if (!$this->typecomptes->contains($typecompte)) {
             $this->typecomptes[] = $typecompte;
+            $typecompte->setCompte($this);
         }
 
         return $this;
@@ -191,6 +193,10 @@ class Compte
     {
         if ($this->typecomptes->contains($typecompte)) {
             $this->typecomptes->removeElement($typecompte);
+            // set the owning side to null (unless already changed)
+            if ($typecompte->getCompte() === $this) {
+                $typecompte->setCompte(null);
+            }
         }
 
         return $this;

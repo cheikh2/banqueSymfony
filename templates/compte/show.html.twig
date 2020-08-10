@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container mt-4">
+		<h5>LISTE DE CLIENTS PHYSIQUES</h5>
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+		<div class="text-right">
+			<a href="{{ path('compte_new') }}" class="btn btn-success">AJOUTER UN COMPTE</a>
+		</div>
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Id</th>
+					<th>N* Agence</th>
+					<th>N* Compte</th>
+					<th>Cle Rib</th>
+					<th>Montant</th>
+					<th>Deut Blocage</th>
+					<th>Fin Blocage</th>
+					<th>Physique</th>
+					<th>Moral</th>
+					<th>Action</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for compte in comptes %}
+					<tr>
+						<td>{{ compte.id }}</td>
+						<td>{{ compte.numAgence }}</td>
+						<td>{{ compte.numCompte }}</td>
+						<td>{{ compte.rib }}</td>
+						<td>{{ compte.montant }}</td>
+						<td>{{ compte.dateDebut }}</td>
+						<td>{{ compte.dateFin }}</td>
+						<td>{{ compte.physique.prenom }}</td>
+						<td>{{ compte.moral.nomEmpl }}</td>
+						<td>
+							<a href="{{ path('compte_edit', {id: compte.id}) }}" class="btn btn-primary">Editer</a>
+						</td>
+						<td>
+							<a href="{{ path('compte_delete', {id: compte.id}) }}" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer')">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

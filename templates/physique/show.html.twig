@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<div class="container mt-4">
+		<h5>LISTE DE CLIENTS PHYSIQUES</h5>
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+		<div class="text-right">
+			<a href="{{ path('physique_new') }}" class="btn btn-success">AJOUTER UN Client</a>
+		</div>
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Id</th>
+             <th>Nom</th>
+             <th>Prenom</th>
+             <th>Adresse</th>
+             <th>Email</th>
+             <th>Telephone</th>
+             <th>Sexe</th>
+             <th>Profession</th>
+             <th>CNI</th>
+             <th>Salaire</th>
+             <th>Action</th>
+             <th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for physique in physiques %}
+					<tr>
+						<td>{{ physique.id }}</td>
+						<td>{{ physique.prenom }}</td>
+						<td>{{ physique.nom }}</td>
+						<td>{{ physique.adress }}</td>
+						<td>{{ physique.email }}</td>
+						<td>{{ physique.telephone }}</td>
+						<td>{{ physique.sexe }}</td>
+						<td>{{ physique.profession }}</td>
+						<td>{{ physique.cni }}</td>
+						<td>{{ physique.salaire }}</td>
+						<td>{{ physique.moral.nomEmpl }}</td>
+						<td>
+							<a href="{{ path('physique_edit', {id: physique.id}) }}" class="btn btn-primary">Editer</a>
+						</td>
+						<td>
+							<a href="{{ path('physique_delete', {id: physique.id}) }}" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer')">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
