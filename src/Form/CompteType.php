@@ -5,10 +5,10 @@ namespace App\Form;
 use App\Entity\Compte;
 use App\Entity\Moral;
 use App\Entity\Physique;
-use App\Entity\TypeCompte;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,32 +17,54 @@ class CompteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numAgence')
-            ->add('numCompte')
-            ->add('rib')
-            ->add('montant')
-            ->add('dateDebut', DateType::class,['widget'=>'single_text'])
-            ->add('dateFin', DateType::class,['widget'=>'single_text'])
-            ->add('moral',
-            EntityType::class,
+            ->add('numAgence',
+            TextType::class,
             [
-                'class' => Moral::class,
-                'choice_label' => 'nomEmpl'
+                "attr" => ["class" => "form-control"]
             ]
-            )
-            ->add('physique',
-            EntityType::class,
+        )
+            ->add('numCompte',
+            TextType::class,
             [
-                'class' => Physique::class,
-                'choice_label' => 'prenom'
+                "attr" => ["class" => "form-control"]
             ]
-            )
-            ->add('typecomptes',
-            EntityType::class,
+        )
+            ->add('rib',
+            TextType::class,
             [
-                'class' => TypeCompte::class,
-                'choice_label' => 'libelle'
+                "attr" => ["class" => "form-control"]
             ]
+        )
+            ->add('montant',
+            TextType::class,
+            [
+                "attr" => ["class" => "form-control"]
+            ]
+        )
+            ->add('dateDebut',
+            DateType::class,
+            [
+                "attr" => ["class" => "form-control"]
+            ]
+        )
+            ->add('dateFin', DateType::class,
+            [
+                "attr" => ["class" => "form-control"]
+            ]
+        )
+            ->add(
+                'moral',
+                EntityType::class,[
+                    'class'=>Moral::class,
+                    'choice_label'=>'nomEmpl'
+                ])
+            ->add(
+                'physique',
+                EntityType::class,
+                [
+                    'class' => Physique::class,
+                    'choice_label' => 'prenom',
+                ]
             );
     }
 

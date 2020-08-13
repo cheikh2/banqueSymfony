@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 	<div class="container mt-4">
-		<h5>LISTE DE CLIENTS PHYSIQUES</h5>
+		<h5 class="text-white text-center">LISTE DE CLIENTS PHYSIQUES</h5>
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success">
 				{{ message }}
@@ -10,26 +10,28 @@
 		<div class="text-right">
 			<a href="{{ path('physique_new') }}" class="btn btn-success">AJOUTER UN Client</a>
 		</div>
-		<table class="table table-stripped">
+		<table class="table table-bordered">
 			<thead>
-				<tr>
+				<tr class="text-white bg-dark">
 					<th>Id</th>
-             <th>Nom</th>
-             <th>Prenom</th>
-             <th>Adresse</th>
-             <th>Email</th>
-             <th>Telephone</th>
-             <th>Sexe</th>
-             <th>Profession</th>
-             <th>CNI</th>
-             <th>Salaire</th>
-             <th>Action</th>
-             <th>Action</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Adresse</th>
+					<th>Email</th>
+					<th>Telephone</th>
+					<th>Sexe</th>
+					<th>Profession</th>
+					<th>CNI</th>
+					<th>Salaire</th>
+					<th>Moral</th>
+					<th>Action</th>
+					<th>Action</th>
+					
 				</tr>
 			</thead>
 			<tbody>
 				{% for physique in physiques %}
-					<tr>
+					<tr class="text-white">
 						<td>{{ physique.id }}</td>
 						<td>{{ physique.prenom }}</td>
 						<td>{{ physique.nom }}</td>
@@ -40,7 +42,7 @@
 						<td>{{ physique.profession }}</td>
 						<td>{{ physique.cni }}</td>
 						<td>{{ physique.salaire }}</td>
-						<td>{{ physique.moral.nomEmpl }}</td>
+						<td>{{ physique.moral.nomEmpl ?? ''}}</td>
 						<td>
 							<a href="{{ path('physique_edit', {id: physique.id}) }}" class="btn btn-primary">Editer</a>
 						</td>

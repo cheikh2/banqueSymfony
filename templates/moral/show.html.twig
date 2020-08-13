@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 	<div class="container mt-4">
-		<h5>LISTE DE CLIENTS MORAUX</h5>
+		<h5 class="text-white text-center">LISTE DE CLIENTS MORAUX</h5>
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success">
 				{{ message }}
@@ -10,9 +10,9 @@
 		<div class="text-right">
 			<a href="{{ path('moral_new') }}" class="btn btn-success">AJOUTER UN Client</a>
 		</div>
-		<table class="table table-stripped">
+		<table class="table table-bordered">
 			<thead>
-				<tr>
+				<tr class="text-white bg-dark">
 					<th>ID</th>
 					<th>NOM</th>
 					<th>NINEA</th>
@@ -25,7 +25,7 @@
 			</thead>
 			<tbody>
 				{% for moral in morals %}
-					<tr>
+					<tr class="text-white">
 						<td>{{ moral.id }}</td>
 						<td>{{ moral.nomEmpl }}</td>
 						<td>{{ moral.ninea }}</td>

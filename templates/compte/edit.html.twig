@@ -2,11 +2,11 @@
 
 {% block title %}Editer compte{% endblock %}
 {% block body %}
-<h1>Editer un compte</h1>
+<h1 class="text-white text-center">FORMULAIRE D'EDITION DE COMPTE</h1>
 
 {{ form_start(form) }}
     {% include "compte/index.html.twig" %}
-    <button class="btn btn-success">
+    <button class="btn btn-primary col-md-4 offset-md-4">
         Editer
     <button>
 {{ form_end(form) }}

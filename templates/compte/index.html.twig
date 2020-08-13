@@ -1,39 +1,52 @@
-<div class="form-group">
-	{{ form_label(form.numAgence) }}
-	{{ form_widget(form.numAgence) }}
+<div class="col-md-6 offset-md-3 mt-5">
+	<div class="card">
+		<h4 class="card-header text-center">BANQUE DU PEUPLE</h4>
+		<div class="card-body">
+<div class="form-row">
+			<div class="form-group col-md-4 offset-md-2">
+				{{ form_label(form.numAgence) }}
+				{{ form_widget(form.numAgence) }}
+			</div>
+
+			<div class="form-group col-md-4">
+				{{ form_label(form.numCompte) }}
+				{{ form_widget(form.numCompte) }}
+			</div>
+</div>
+<div class="form-row">
+			<div class="form-group col-md-4 offset-md-2">
+				{{ form_label(form.rib) }}
+				{{ form_widget(form.rib) }}
+			</div>
+
+			<div class="form-group col-md-4">
+				{{ form_label(form.montant) }}
+				{{ form_widget(form.montant) }}
+			</div>
 </div>
 
-<div class="form-group">
-	{{ form_label(form.numCompte) }}
-	{{ form_widget(form.numCompte) }}
-</div>
+<div class="form-row">
+			<div class="form-group col-md-4 offset-md-2">
+				{{ form_label(form.dateDebut) }}
+				{{ form_widget(form.dateDebut) }}
+			</div>
 
-<div class="form-group">
-	{{ form_label(form.rib) }}
-	{{ form_widget(form.rib) }}
+			<div class="form-group col-md-4">
+				{{ form_label(form.dateFin) }}
+				{{ form_widget(form.dateFin) }}
+			</div>
 </div>
+<div class="form-row">
+	
+				{{ form_label(form.physique) }}
+				<div class="form-control col-md-4 mt-4">
+				{{ form_widget(form.physique) }}
+			</div>
 
-<div class="form-group">
-	{{ form_label(form.montant) }}
-	{{ form_widget(form.montant) }}
-</div>
+				{{ form_label(form.moral) }}
+				<div class="form-control col-md-4 mt-4">
+				{{ form_widget(form.moral) }}
+			</div>
+			</div>
+		</div>
 
-<div class="form-group">
-	{{ form_label(form.dateDebut) }}
-	{{ form_widget(form.dateFin) }}
-</div>
-
-<div class="form-group">
-	{{ form_label(form.physique) }}
-	{{ form_widget(form.physique) }}
-</div>
-
-<div class="form-group">
-	{{ form_label(form.moral) }}
-	{{ form_widget(form.moral) }}
-</div>
-
-<div class="form-group">
-	{{ form_label(form.typecompte) }}
-	{{ form_widget(form.typecompte) }}
-</div>

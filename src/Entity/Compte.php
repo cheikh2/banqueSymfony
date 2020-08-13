@@ -2,9 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\CompteRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -58,17 +55,6 @@ class Compte
      * @ORM\ManyToOne(targetEntity=Physique::class, inversedBy="comptes")
      */
     private $physique;
-
-    /**
-     * @ORM\OneToMany(targetEntity=TypeCompte::class, mappedBy="compte")
-     */
-    private $typecomptes;
-
-    public function __construct()
-    {
-        $this->typecomptes = new ArrayCollection();
-    }
-
 
     public function getId(): ?int
     {
@@ -167,37 +153,6 @@ class Compte
     public function setPhysique(?Physique $physique): self
     {
         $this->physique = $physique;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|TypeCompte[]
-     */
-    public function getTypecomptes(): Collection
-    {
-        return $this->typecomptes;
-    }
-
-    public function addTypecompte(TypeCompte $typecompte): self
-    {
-        if (!$this->typecomptes->contains($typecompte)) {
-            $this->typecomptes[] = $typecompte;
-            $typecompte->setCompte($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTypecompte(TypeCompte $typecompte): self
-    {
-        if ($this->typecomptes->contains($typecompte)) {
-            $this->typecomptes->removeElement($typecompte);
-            // set the owning side to null (unless already changed)
-            if ($typecompte->getCompte() === $this) {
-                $typecompte->setCompte(null);
-            }
-        }
 
         return $this;
     }
