@@ -26,7 +26,7 @@ class PhysiqueController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($physique);
             $em->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('physique_show');
         }
         return $this->render('physique/new.html.twig', [
             "form" => $form->createView()

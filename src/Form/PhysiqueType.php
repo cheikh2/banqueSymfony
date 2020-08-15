@@ -78,14 +78,24 @@ class PhysiqueType extends AbstractType
                     "attr" => ["class" => "form-control"]
                 ]
             )
-            ->add(
-                'moral',
-                EntityType::class,
-                [
+            // ->add(
+            //     'moral',
+            //     EntityType::class,
+            //     [
+            //         'class' => Moral::class,
+            //         'choice_label' => 'nomEmpl', 
+            //         "attr" => array("class" => "form-control form-group", 
+            //         'placeholder' => 'Choose an option'
+            //     )]
+            //     );
+                ->add('moral', EntityType::class, array(
                     'class' => Moral::class,
-                    'choice_label' => 'nomEmpl'
-                ]
-                );
+                    'choice_label' => 'nomEmpl',
+                    "attr" => array("class" => "form-control form-group"),
+                    'placeholder' => '--Choisissez un employeur--',
+                    'required' => false,
+                    //'null' => true
+                ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

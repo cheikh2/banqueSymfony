@@ -22,13 +22,14 @@
 					<th>Fin Blocage</th>
 					<th>Physique</th>
 					<th>Moral</th>
+					<th>Type de Compte</th>
 					<th>Action</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for compte in comptes %}
-					<tr class="text-white">
+					<tr class="text-white bg-dark">
 						<td>{{ compte.id }}</td>
 						<td>{{ compte.numAgence }}</td>
 						<td>{{ compte.numCompte }}</td>
@@ -36,8 +37,9 @@
 						<td>{{ compte.montant }}</td>
 						<td>{{ compte.dateDebut|date("d/m/Y") }}</td>
 						<td>{{ compte.dateFin|date("d/m/Y") }}</td>
-						<td>{{ compte.physique.prenom }}</td>
-						<td>{{ compte.moral.nomEmpl }}</td>
+						<td>{{ compte.physique.prenom ?? ''}}</td>
+						<td>{{ compte.moral.nomEmpl ?? ''}}</td>
+						<td>{{ compte.typec.libelle ?? ''}}</td>
 						<td>
 							<a href="{{ path('compte_edit', {id: compte.id}) }}" class="btn btn-primary">Editer</a>
 						</td>

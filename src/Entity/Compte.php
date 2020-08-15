@@ -56,6 +56,11 @@ class Compte
      */
     private $physique;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Typec::class, inversedBy="comptes", cascade={"persist"})
+     */
+    private $typec;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -156,4 +161,17 @@ class Compte
 
         return $this;
     }
+
+    public function getTypec(): ?Typec
+    {
+        return $this->typec;
+    }
+
+    public function setTypec(?Typec $typec): self
+    {
+        $this->typec = $typec;
+
+        return $this;
+    }
+
 }

@@ -4,6 +4,7 @@
 		<div class="card-body">
 			<div class="form-row">
 				<div class="form-group col-md-4 offset-md-2">
+				
 					{{ form_label(form.prenom) }}
 					{{ form_widget(form.prenom) }}
 				</div>
@@ -57,11 +58,9 @@
 					{{ form_widget(form.salaire) }}
 				</div>
 
-				{{ form_label(form.moral) }}
-				<div class="form-control col-md-4 mt-4">
+				<div class="col-md-4">
+					{{ form_label(form.moral) }}
 					{{ form_widget(form.moral) }}
 				</div>
 			</div>
 		</div>
-	
-

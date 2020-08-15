@@ -23,6 +23,9 @@ class CompteController extends AbstractController
         // traitement du formulaire
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // if($request->request->get('moral') != 0){
+
+            // }
             $em = $this->getDoctrine()->getManager();
             $em->persist($compte);
             $em->flush();

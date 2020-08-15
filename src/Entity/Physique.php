@@ -6,6 +6,7 @@ use App\Repository\PhysiqueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PhysiqueRepository::class)
@@ -20,16 +21,19 @@ class Physique
     private $id;
 
     /**
+     * @Assert\Regex("/^[a-zA-Z0-9_]+$/")
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
 
     /**
+     * @Assert\Regex("/^[a-zA-Z0-9_]+$/")
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
+     * @Assert\Regex("/^[a-zA-Z0-9_]+$/")
      * @ORM\Column(type="string", length=255)
      */
     private $adress;
@@ -40,16 +44,22 @@ class Physique
     private $email;
 
     /**
+     * @Assert\Regex(
+     * pattern="#^7[0,6,7,8]([0-9]){7}$#",
+     * message="Votre telephone n'est pas valide"
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $telephone;
 
     /**
+     * @Assert\Regex("/^[a-zA-Z0-9_]+$/")
      * @ORM\Column(type="string", length=255)
      */
     private $sexe;
 
     /**
+     * @Assert\Regex("/^[a-zA-Z0-9_]+$/")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $profession;
@@ -65,7 +75,7 @@ class Physique
     private $salaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Moral::class, inversedBy="physiques")
+     * @ORM\ManyToOne(targetEntity=Moral::class, inversedBy="physiques", cascade={"persist"})
      */
     private $moral;
 

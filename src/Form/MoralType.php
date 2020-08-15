@@ -36,7 +36,8 @@ class MoralType extends AbstractType
                 null,
                 [
                     "attr" => [
-                        "class" => "form-control"
+                        "class" => "form-control",
+                        'minlength' => 2, 'maxlength' => 20
                     ]
                 ]
             )
